@@ -1,0 +1,15 @@
+{
+  "name": "praxion-assignment",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "services/auth-service",
+    "services/user-service"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace @praxion/user-service && npm run build --workspace @praxion/auth-service",
+    "dev:auth": "npm run start:dev --workspace @praxion/auth-service",
+    "dev:user": "npm run start:dev --workspace @praxion/user-service",
+    "test:auth": "npm run test --workspace @praxion/auth-service"
+  }
+}
