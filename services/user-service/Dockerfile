@@ -8,6 +8,7 @@ COPY tsconfig.base.json ./
 RUN npm ci
 
 COPY services/user-service ./services/user-service
+RUN rm -rf services/user-service/dist services/user-service/tsconfig.tsbuildinfo
 RUN npm run build --workspace @praxion/user-service
 
 FROM node:20-alpine AS runner
