@@ -15,7 +15,7 @@ import { RolesGuard } from '../auth/roles.guard';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { UpdateUserRoleDto } from './dto/update-user-role.dto';
 import { UsersService } from './users.service';
-import { UserRole } from './user-role.enum';
+import { UserRole } from '../users/user-role.enum';
 
 interface AuthenticatedRequest extends Request {
   user: {
