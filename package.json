@@ -9,7 +9,7 @@
   "scripts": {
     "build": "npm run build --workspace @praxion/user-service && npm run build --workspace @praxion/auth-service",
     "dev:auth": "npm run start:dev --workspace @praxion/auth-service",
-    "dev:user": "npm run start:dev --workspace @praxion/user-service",
+    "dev:user": "DB_HOST=localhost DB_PORT=55432 DB_USER=postgres DB_PASSWORD=postgres DB_NAME=praxion npm run start:dev --workspace @praxion/user-service",
     "test:auth": "npm run test --workspace @praxion/auth-service"
   }
 }
