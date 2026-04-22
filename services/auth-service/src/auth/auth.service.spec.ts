@@ -5,6 +5,12 @@ import * as bcrypt from 'bcrypt';
 import { AuthService } from './auth.service';
 import { UserServiceClient } from './user-service.client';
 
+jest.mock('bcrypt', () => ({
+  compare: jest.fn(),
+}));
+
+const mockedBcrypt = bcrypt as jest.Mocked<typeof bcrypt>;
+
 describe('AuthService', () => {
   let service: AuthService;
   let userServiceClient: jest.Mocked<UserServiceClient>;
@@ -49,7 +55,7 @@ describe('AuthService', () => {
       role: 'user',
       passwordHash: 'hashed-password',
     });
-    jest.spyOn(bcrypt, 'compare').mockResolvedValue(true as never);
+    mockedBcrypt.compare.mockResolvedValue(true as never);
     jwtService.signAsync
       .mockResolvedValueOnce('access-token')
       .mockResolvedValueOnce('refresh-token');
@@ -120,7 +126,7 @@ describe('AuthService', () => {
       role: 'user',
       passwordHash: 'hashed-password',
     });
-    jest.spyOn(bcrypt, 'compare').mockResolvedValue(false as never);
+    mockedBcrypt.compare.mockResolvedValue(false as never);
 
     await expect(
       service.validateUser('user@example.com', 'wrong-password'),

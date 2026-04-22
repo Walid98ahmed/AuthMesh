@@ -1,4 +1,3 @@
-version: '3.9'
 services:
   postgres:
     image: postgres:16-alpine
@@ -22,7 +21,7 @@ services:
       context: .
       dockerfile: services/user-service/Dockerfile
     env_file:
-      - services/user-service/.env
+      - services/user-service/.env.example
     depends_on:
       postgres:
         condition: service_healthy
@@ -34,7 +33,7 @@ services:
       context: .
       dockerfile: services/auth-service/Dockerfile
     env_file:
-      - services/auth-service/.env
+      - services/auth-service/.env.example
     depends_on:
       - user-service
     ports:

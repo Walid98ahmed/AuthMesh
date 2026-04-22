@@ -60,7 +60,6 @@ export class AuthService {
       id: payload.sub,
       email: payload.email,
       role: payload.role,
-      passwordHash: '',
     });
   }
 
